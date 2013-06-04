@@ -15,6 +15,7 @@ describe PanicBoardData::Graph do
 
     before do
       graph.title = "Soft Drink Sales"
+      graph.color = :red
 
       data_sequence = PanicBoardData::DataSequence.new('X-Cola')
       data_sequence.data['2008'] = 22
@@ -29,6 +30,10 @@ describe PanicBoardData::Graph do
 
     it "should set the title" do
       @result['graph']['title'] = 'Soft Drink Sales'
+    end
+
+    it "should set the color" do
+      @result['graph']['color'] = 'red'
     end
 
     it "should add the data sequences" do

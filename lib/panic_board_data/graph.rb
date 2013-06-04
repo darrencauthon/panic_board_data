@@ -1,7 +1,7 @@
 module PanicBoardData
 
   class Graph
-    attr_accessor :title
+    attr_accessor :title, :color
     attr_accessor :data_sequences
 
     def initialize
@@ -12,6 +12,7 @@ module PanicBoardData
       { 
         'graph' => { 
                      'title' => 'Soft Drink Sales',
+                     'color' => 'red',
                      'datapoints' => [ 
                                        { 'title' => '2008', 'value' => 22 },
                                        { 'title' => '2009', 'value' => 24 },
