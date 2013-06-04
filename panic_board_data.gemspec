@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = PanicBoardData::VERSION
   spec.authors       = ["Darren Cauthon"]
   spec.email         = ["darren@cauthon.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Export data for Panic Board}
+  spec.summary       = %q{Export data for Panic Board}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,6 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_runtime_dependency "json"
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "subtle"
+  spec.add_development_dependency "mocha"
+  spec.add_development_dependency "contrast"
 end
