@@ -55,6 +55,10 @@ describe PanicBoardData::Graph do
         @result['graph']['type'].must_equal 'bar'
       end
 
+      it "should default to refreshing every 120 seconds" do
+        @result['graph']['datasequences'][0]['refreshEveryNSeconds'].must_equal 120
+      end
+
       it "should add the data sequences" do
         @result['graph']['datasequences'][0]['title'].must_equal "X-Cola"
         @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 22 } )
