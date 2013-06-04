@@ -1,12 +1,5 @@
 module PanicBoardData
 
-  class DataSequence
-    attr_accessor :data
-    def initialize(name)
-      @data = {}
-    end
-  end
-
   class Graph
     attr_accessor :title
     attr_accessor :data_sequences
