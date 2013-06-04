@@ -18,6 +18,7 @@ module PanicBoardData
                      'title' => 'Soft Drink Sales',
                      'color' => 'red',
                      'type'  => 'bar',
+                     'total' => 'true',
                      'datapoints' => [ 
                                        { 'title' => '2008', 'value' => 22 },
                                        { 'title' => '2009', 'value' => 24 },

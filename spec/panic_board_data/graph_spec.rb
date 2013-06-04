@@ -40,15 +40,19 @@ describe PanicBoardData::Graph do
       end
 
       it "should set the title" do
-        @result['graph']['title'] = 'Soft Drink Sales'
+        @result['graph']['title'].must_equal 'Soft Drink Sales'
       end
 
       it "should set the color" do
-        @result['graph']['color'] = 'red'
+        @result['graph']['color'].must_equal 'red'
       end
 
       it "should set the total" do
-        @result['graph']['total'] = 'true'
+        @result['graph']['total'].must_equal 'true'
+      end
+
+      it "should set the type" do
+        @result['graph']['type'].must_equal 'bar'
       end
 
       it "should add the data sequences" do
