@@ -1,7 +1,11 @@
 module PanicBoardData
 
+  GRAPH_TYPES = [:bar, :line]
+  COLORS = [:yellow, :green, :red, :purple, :blue, :mediumGray, :pink, :aqua, :orange, :light_gray]
+
   class Graph
-    attr_accessor :title, :color
+
+    attr_accessor :title, :color, :total, :type
     attr_accessor :data_sequences
 
     def initialize
@@ -13,6 +17,7 @@ module PanicBoardData
         'graph' => { 
                      'title' => 'Soft Drink Sales',
                      'color' => 'red',
+                     'type'  => 'bar',
                      'datapoints' => [ 
                                        { 'title' => '2008', 'value' => 22 },
                                        { 'title' => '2009', 'value' => 24 },

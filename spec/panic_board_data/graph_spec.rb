@@ -9,6 +9,14 @@ describe PanicBoardData::Graph do
     PanicBoardData::Graph.new.data_sequences.count.must_equal 0
   end
 
+  it "should have the accepted graph types" do
+    PanicBoardData::GRAPH_TYPES.must_equal [:bar, :line]
+  end
+
+  it "should have the accepted colors" do
+    PanicBoardData::COLORS.must_equal [:yellow, :green, :red, :purple, :blue, :mediumGray, :pink, :aqua, :orange, :light_gray]
+  end
+
   describe "to_hash" do
 
     let(:graph) { PanicBoardData::Graph.new }
@@ -16,6 +24,8 @@ describe PanicBoardData::Graph do
     before do
       graph.title = "Soft Drink Sales"
       graph.color = :red
+      graph.total = true
+      graph.type  = :bar
 
       data_sequence = PanicBoardData::DataSequence.new('X-Cola')
       data_sequence.data['2008'] = 22
@@ -34,6 +44,10 @@ describe PanicBoardData::Graph do
 
     it "should set the color" do
       @result['graph']['color'] = 'red'
+    end
+
+    it "should set the total" do
+      @result['graph']['total'] = 'true'
     end
 
     it "should add the data sequences" do
