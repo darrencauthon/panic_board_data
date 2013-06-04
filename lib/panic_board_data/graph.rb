@@ -19,9 +19,11 @@ module PanicBoardData
                      'color'         => color.to_s,
                      'type'          => type.to_s,
                      'total'         => total.to_s,
-                     'datasequences' => [{'datapoints' => data_sequences.first.data.map do |k, v|
-                                       { 'title' => k, 'value' => v }
-                                     end}]
+                     'datasequences' => [
+                                         {'datapoints' => data_sequences.first.data.map do |k, v|
+                                                            { 'title' => k, 'value' => v }
+                                                          end}
+                                        ]
                    }
       }
     end
