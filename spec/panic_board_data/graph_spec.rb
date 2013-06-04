@@ -56,6 +56,7 @@ describe PanicBoardData::Graph do
       end
 
       it "should add the data sequences" do
+        @result['graph']['datasequences'][0]['title'].must_equal "X-Cola"
         @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 22 } )
         @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '2009', 'value' => 24 } )
         @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 25.5 } )
@@ -99,6 +100,7 @@ describe PanicBoardData::Graph do
       end
 
       it "should add the data sequences" do
+        @result['graph']['datasequences'][0]['title'].must_equal "Apples"
         @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '1908', 'value' => 1 } )
         @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '1909', 'value' => 2 } )
         @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '1910', 'value' => 3 } )
@@ -121,7 +123,7 @@ describe PanicBoardData::Graph do
         first.data['1911'] = 4
         first.data['1912'] = 5
 
-        second = PanicBoardData::DataSequence.new('Apples')
+        second = PanicBoardData::DataSequence.new('Oranges')
         second.data['2008'] = 6
         second.data['2009'] = 7
         second.data['2010'] = 8
@@ -151,12 +153,14 @@ describe PanicBoardData::Graph do
       end
 
       it "should add the data sequences" do
+        @result['graph']['datasequences'][0]['title'].must_equal "Apples"
         @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '1908', 'value' => 1 } )
         @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '1909', 'value' => 2 } )
         @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '1910', 'value' => 3 } )
         @result['graph']['datasequences'][0]['datapoints'][3].must_equal( { 'title' => '1911', 'value' => 4 } )
         @result['graph']['datasequences'][0]['datapoints'][4].must_equal( { 'title' => '1912', 'value' => 5 } )
 
+        @result['graph']['datasequences'][1]['title'].must_equal "Oranges"
         @result['graph']['datasequences'][1]['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 6  } )
         @result['graph']['datasequences'][1]['datapoints'][1].must_equal( { 'title' => '2009', 'value' => 7  } )
         @result['graph']['datasequences'][1]['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 8  } )

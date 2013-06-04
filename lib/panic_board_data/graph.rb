@@ -20,9 +20,12 @@ module PanicBoardData
                      'type'          => type.to_s,
                      'total'         => total.to_s,
                      'datasequences' => data_sequences.map do |data_sequence|
-                                         {'datapoints' => data_sequence.data.map do |k, v|
+                                         {
+                                           'title' => data_sequence.title,
+                                           'datapoints' => data_sequence.data.map do |k, v|
                                                             { 'title' => k, 'value' => v }
-                                                          end}
+                                                          end
+                                         }
                                         end
                    }
       }
