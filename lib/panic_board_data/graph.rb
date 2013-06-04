@@ -16,16 +16,22 @@ module PanicBoardData
       { 
         'graph' => { 
                      'title'         => title,
-                     'color'         => color.to_s,
+                     'color'         => formatted_color,
                      'type'          => type.to_s,
                      'total'         => total.to_s,
-                     'datasequences' => [
-                                         {'datapoints' => data_sequences.first.data.map do |k, v|
+                     'datasequences' => data_sequences.map do |data_sequence|
+                                         {'datapoints' => data_sequence.data.map do |k, v|
                                                             { 'title' => k, 'value' => v }
                                                           end}
-                                        ]
+                                        end
                    }
       }
+    end
+
+    private
+
+    def formatted_color
+      color == :light_gray ? 'lightGray' : color.to_s
     end
   end
 

@@ -106,5 +106,63 @@ describe PanicBoardData::Graph do
         @result['graph']['datasequences'][0]['datapoints'][4].must_equal( { 'title' => '1912', 'value' => 5 } )
       end
     end
+
+    describe "third example" do
+      before do
+        graph.title = "Third Example"
+        graph.color = :light_gray
+        graph.total = true
+        graph.type  = :line
+
+        first = PanicBoardData::DataSequence.new('Apples')
+        first.data['1908'] = 1
+        first.data['1909'] = 2
+        first.data['1910'] = 3
+        first.data['1911'] = 4
+        first.data['1912'] = 5
+
+        second = PanicBoardData::DataSequence.new('Apples')
+        second.data['2008'] = 6
+        second.data['2009'] = 7
+        second.data['2010'] = 8
+        second.data['2011'] = 9
+        second.data['2012'] = 10
+
+        graph.data_sequences << first
+        graph.data_sequences << second
+
+        @result = graph.to_hash
+      end
+
+      it "should set the title" do
+        @result['graph']['title'].must_equal 'Third Example'
+      end
+
+      it "should set the color" do
+        @result['graph']['color'].must_equal 'lightGray'
+      end
+
+      it "should set the total" do
+        @result['graph']['total'].must_equal 'true'
+      end
+
+      it "should set the type" do
+        @result['graph']['type'].must_equal 'line'
+      end
+
+      it "should add the data sequences" do
+        @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '1908', 'value' => 1 } )
+        @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '1909', 'value' => 2 } )
+        @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '1910', 'value' => 3 } )
+        @result['graph']['datasequences'][0]['datapoints'][3].must_equal( { 'title' => '1911', 'value' => 4 } )
+        @result['graph']['datasequences'][0]['datapoints'][4].must_equal( { 'title' => '1912', 'value' => 5 } )
+
+        @result['graph']['datasequences'][1]['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 6  } )
+        @result['graph']['datasequences'][1]['datapoints'][1].must_equal( { 'title' => '2009', 'value' => 7  } )
+        @result['graph']['datasequences'][1]['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 8  } )
+        @result['graph']['datasequences'][1]['datapoints'][3].must_equal( { 'title' => '2011', 'value' => 9  } )
+        @result['graph']['datasequences'][1]['datapoints'][4].must_equal( { 'title' => '2012', 'value' => 10 } )
+      end
+    end
   end
 end
