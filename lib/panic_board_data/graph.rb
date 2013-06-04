@@ -15,17 +15,13 @@ module PanicBoardData
     def to_hash
       { 
         'graph' => { 
-                     'title' => 'Soft Drink Sales',
-                     'color' => 'red',
-                     'type'  => 'bar',
-                     'total' => 'true',
-                     'datapoints' => [ 
-                                       { 'title' => '2008', 'value' => 22 },
-                                       { 'title' => '2009', 'value' => 24 },
-                                       { 'title' => '2010', 'value' => 25.5 },
-                                       { 'title' => '2011', 'value' => 27.9 },
-                                       { 'title' => '2012', 'value' => 31 }
-                                     ]
+                     'title'         => title,
+                     'color'         => color.to_s,
+                     'type'          => type.to_s,
+                     'total'         => total.to_s,
+                     'datasequences' => [{'datapoints' => data_sequences.first.data.map do |k, v|
+                                       { 'title' => k, 'value' => v }
+                                     end}]
                    }
       }
     end

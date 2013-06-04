@@ -56,11 +56,54 @@ describe PanicBoardData::Graph do
       end
 
       it "should add the data sequences" do
-        @result['graph']['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 22 } )
-        @result['graph']['datapoints'][1].must_equal( { 'title' => '2009', 'value' => 24 } )
-        @result['graph']['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 25.5 } )
-        @result['graph']['datapoints'][3].must_equal( { 'title' => '2011', 'value' => 27.9 } )
-        @result['graph']['datapoints'][4].must_equal( { 'title' => '2012', 'value' => 31 } )
+        @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '2008', 'value' => 22 } )
+        @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '2009', 'value' => 24 } )
+        @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 25.5 } )
+        @result['graph']['datasequences'][0]['datapoints'][3].must_equal( { 'title' => '2011', 'value' => 27.9 } )
+        @result['graph']['datasequences'][0]['datapoints'][4].must_equal( { 'title' => '2012', 'value' => 31 } )
+      end
+    end
+
+    describe "second example" do
+      before do
+        graph.title = "Another Example"
+        graph.color = :blue
+        graph.total = false
+        graph.type  = :line
+
+        data_sequence = PanicBoardData::DataSequence.new('Apples')
+        data_sequence.data['1908'] = 1
+        data_sequence.data['1909'] = 2
+        data_sequence.data['1910'] = 3
+        data_sequence.data['1911'] = 4
+        data_sequence.data['1912'] = 5
+
+        graph.data_sequences << data_sequence
+        @result = graph.to_hash
+      end
+
+      it "should set the title" do
+        @result['graph']['title'].must_equal 'Another Example'
+      end
+
+      it "should set the color" do
+        @result['graph']['color'].must_equal 'blue'
+      end
+
+      it "should set the total" do
+        @result['graph']['total'].must_equal 'false'
+      end
+
+      it "should set the type" do
+        @result['graph']['type'].must_equal 'line'
+      end
+
+      it "should add the data sequences" do
+        @result['graph']['datasequences'][0]['datapoints'][0].must_equal( { 'title' => '1908', 'value' => 1 } )
+        @result['graph']['datasequences'][0]['datapoints'][1].must_equal( { 'title' => '1909', 'value' => 2 } )
+        @result['graph']['datasequences'][0]['datapoints'][2].must_equal( { 'title' => '1910', 'value' => 3 } )
+        @result['graph']['datasequences'][0]['datapoints'][3].must_equal( { 'title' => '1911', 'value' => 4 } )
+        @result['graph']['datasequences'][0]['datapoints'][4].must_equal( { 'title' => '1912', 'value' => 5 } )
       end
     end
   end
