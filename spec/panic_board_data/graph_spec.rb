@@ -126,6 +126,7 @@ describe PanicBoardData::Graph do
         graph.type  = :line
 
         first = PanicBoardData::DataSequence.new('Apples')
+        first.refresh_every_n_seconds = 5
         first.data['1908'] = 1
         first.data['1909'] = 2
         first.data['1910'] = 3
@@ -133,6 +134,7 @@ describe PanicBoardData::Graph do
         first.data['1912'] = 5
 
         second = PanicBoardData::DataSequence.new('Oranges')
+        second.refresh_every_n_seconds = 10
         second.data['2008'] = 6
         second.data['2009'] = 7
         second.data['2010'] = 8
@@ -175,6 +177,11 @@ describe PanicBoardData::Graph do
         @result['graph']['datasequences'][1]['datapoints'][2].must_equal( { 'title' => '2010', 'value' => 8  } )
         @result['graph']['datasequences'][1]['datapoints'][3].must_equal( { 'title' => '2011', 'value' => 9  } )
         @result['graph']['datasequences'][1]['datapoints'][4].must_equal( { 'title' => '2012', 'value' => 10 } )
+      end
+
+      it "should set the refreshing every n seconds value" do
+        @result['graph']['datasequences'][0]['refreshEveryNSeconds'].must_equal 5
+        @result['graph']['datasequences'][1]['refreshEveryNSeconds'].must_equal 10
       end
     end
 
