@@ -1,3 +1,4 @@
+# http://www.panic.com/statusboard/docs/graph_tutorial.pdf
 module PanicBoardData
 
   GRAPH_TYPES = [:bar, :line]
