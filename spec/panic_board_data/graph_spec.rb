@@ -77,6 +77,7 @@ describe PanicBoardData::Graph do
         graph.type  = :line
 
         data_sequence = PanicBoardData::DataSequence.new('Apples')
+        data_sequence.refresh_every_n_seconds = 60
         data_sequence.data['1908'] = 1
         data_sequence.data['1909'] = 2
         data_sequence.data['1910'] = 3
@@ -101,6 +102,10 @@ describe PanicBoardData::Graph do
 
       it "should set the type" do
         @result['graph']['type'].must_equal 'line'
+      end
+
+      it "should set the refreshing every n seconds value" do
+        @result['graph']['datasequences'][0]['refreshEveryNSeconds'].must_equal 60
       end
 
       it "should add the data sequences" do

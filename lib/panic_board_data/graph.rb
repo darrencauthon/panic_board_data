@@ -36,7 +36,7 @@ module PanicBoardData
       data_sequences.map do |data_sequence|
          {
            'title'                => data_sequence.title,
-           'refreshEveryNSeconds' => 120,
+           'refreshEveryNSeconds' => data_sequence.refresh_every_n_seconds,
            'datapoints'           => data_points_for(data_sequence)
          }
       end
