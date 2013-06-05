@@ -14,17 +14,23 @@ module PanicBoardData
 
     def to_hash
       { 
-        'graph' => { 
-                     'title'         => title,
-                     'color'         => formatted_color,
-                     'type'          => type.to_s,
-                     'total'         => total.to_s,
-                     'datasequences' => formatted_data_sequences
-                   }
+        'graph' => graph
       }
     end
 
     private
+
+    def graph
+      the_graph = { 
+                    'title'         => title,
+                    'color'         => formatted_color,
+                    'type'          => type.to_s,
+                    'total'         => total.to_s,
+                    'datasequences' => formatted_data_sequences
+                  }
+      the_graph.delete('color') if the_graph['color'] == ''
+      the_graph
+    end
 
     def formatted_data_sequences
       data_sequences.map do |data_sequence|

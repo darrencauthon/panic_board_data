@@ -172,5 +172,16 @@ describe PanicBoardData::Graph do
         @result['graph']['datasequences'][1]['datapoints'][4].must_equal( { 'title' => '2012', 'value' => 10 } )
       end
     end
+
+    describe "no color" do
+      before do
+        graph.title = "Soft Drink Sales"
+        @result = graph.to_hash
+      end
+
+      it "should set not set a color" do
+        @result['graph']['color'].nil?.must_equal true
+      end
+    end
   end
 end
