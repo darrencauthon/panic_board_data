@@ -48,7 +48,7 @@ describe PanicBoardData::Graph do
       end
 
       it "should set the total" do
-        @result['graph']['total'].must_equal 'true'
+        @result['graph']['total'].must_equal true
       end
 
       it "should set the type" do
@@ -97,7 +97,7 @@ describe PanicBoardData::Graph do
       end
 
       it "should set the total" do
-        @result['graph']['total'].must_equal 'false'
+        @result['graph'].keys.include?('total').must_equal false
       end
 
       it "should set the type" do
@@ -156,7 +156,7 @@ describe PanicBoardData::Graph do
       end
 
       it "should set the total" do
-        @result['graph']['total'].must_equal 'true'
+        @result['graph']['total'].must_equal true
       end
 
       it "should set the type" do

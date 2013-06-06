@@ -26,10 +26,11 @@ module PanicBoardData
                     'title'         => title,
                     'color'         => formatted_color,
                     'type'          => type.to_s,
-                    'total'         => total.to_s,
+                    'total'         => total,
                     'datasequences' => formatted_data_sequences
                   }
       the_graph.delete('color') if the_graph['color'] == ''
+      the_graph.delete('total') unless the_graph['total'] == true
       the_graph
     end
 
