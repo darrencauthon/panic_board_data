@@ -5,6 +5,20 @@ describe PanicBoardData::Table do
     PanicBoardData::Table.nil?.must_equal false
   end
 
+  describe "to_html" do
+
+    let(:table) { PanicBoardData::Table.new }
+
+    before do
+      @result = table.to_html
+    end
+
+    it "should return a result" do
+      @result.nil?.must_equal false
+    end
+
+  end
+
   describe "to_csv" do
 
     before do
