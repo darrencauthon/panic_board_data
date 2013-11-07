@@ -7,15 +7,7 @@ module PanicBoardData
     attr_accessor :data, :widths, :base_image_url
 
     def build_image value
-
-      url = [self.base_image_url, value]
-              .select { |x| x.to_s != '' }
-              .map    { |x| x.to_s.strip }
-              .map    { |x| x.gsub('/', '') }
-              .join('/')
-              .gsub('http:', 'http://')
-              .gsub('https:', 'https://')
-      "<img src=\"#{url}\" />"
+      "<img src=\"#{url_for(value)}\" />"
     end
 
     def to_html
@@ -37,6 +29,16 @@ module PanicBoardData
     end
 
     private
+
+    def url_for value
+      [self.base_image_url, value]
+        .select { |x| x.to_s != '' }
+        .map    { |x| x.to_s.strip }
+        .map    { |x| x.gsub('/', '') }
+        .join('/')
+        .gsub('http:', 'http://')
+        .gsub('https:', 'https://')
+    end
 
     def build_row_for record
       result = record.each_with_index.map do |value, index|
