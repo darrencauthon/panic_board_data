@@ -122,43 +122,51 @@ describe PanicBoardData::Table do
     end
   end
 
-  describe "to_csv" do
+  [->(d) { PanicBoardData::Table.to_csv(d) },
+   ->(d) do 
+           t = PanicBoardData::Table.new
+           t.data = d
+           t.to_csv
+         end].each do |method|
 
-    before do
-      @result = PanicBoardData::Table.to_csv data
-    end
+    describe "to_csv" do
 
-    describe "an empty set" do
-      let(:data) { [] }
-
-      it "should return an empty string" do
-        @result.must_equal ''
+      before do
+        @result = method.call(data)
       end
-    end
 
-    [:array, :result].to_objects { [
-      [ [0],        "0"            ],
-      [ [1],        "1"            ],
-      [ [1,2],      "1,2"          ],
-      [ [3,4, '"'], "3,4,\"\"\"\"" ]
-    ] }.each do |test|
-      describe "one row" do
-        let(:data) { [ test.array ] }
+      describe "an empty set" do
+        let(:data) { [] }
 
-        it "should return the single value" do
-          @result.must_equal test.result
+        it "should return an empty string" do
+          @result.must_equal ''
         end
       end
-    end
 
-    [:first_row, :second_row, :result].to_objects { [
-      [ [0], [1], "0\n1" ],
-    ] }.each do |test|
-      describe "two rows" do
-        let(:data) { [ test.first_row, test.second_row ] }
+      [:array, :result].to_objects { [
+        [ [0],        "0"            ],
+        [ [1],        "1"            ],
+        [ [1,2],      "1,2"          ],
+        [ [3,4, '"'], "3,4,\"\"\"\"" ]
+      ] }.each do |test|
+        describe "one row" do
+          let(:data) { [ test.array ] }
 
-        it "should return the single value" do
-          @result.must_equal test.result
+          it "should return the single value" do
+            @result.must_equal test.result
+          end
+        end
+      end
+
+      [:first_row, :second_row, :result].to_objects { [
+        [ [0], [1], "0\n1" ],
+      ] }.each do |test|
+        describe "two rows" do
+          let(:data) { [ test.first_row, test.second_row ] }
+
+          it "should return the single value" do
+            @result.must_equal test.result
+          end
         end
       end
     end

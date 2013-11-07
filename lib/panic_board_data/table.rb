@@ -14,6 +14,10 @@ module PanicBoardData
       "<table>#{data_to_rows}</table>"
     end
 
+    def to_csv
+      self.class.to_csv self.data
+    end
+
     def self.to_csv data
       ::CSV.generate do |csv|
         data.each { |row| csv << row }
