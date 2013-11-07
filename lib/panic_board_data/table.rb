@@ -38,21 +38,17 @@ module PanicBoardData
     end
 
     def build_row_for record
-      result = record.each_with_index.map do |value, index|
-                 build_cell_for value, index
-               end.join
+      result = record.each_with_index.map { |v, i| build_cell_for v, i }.join
       "<tr>#{result}</tr>"
     end
 
     def build_cell_for value, index
-      result = ""
       value = value.join('') if value.is_a?(Array)
       if widths && widths[index]
-        result << "<td style=\"width: #{widths[index]}px\">#{value}</td>"
+        "<td style=\"width: #{widths[index]}px\">#{value}</td>"
       else
-        result << "<td>#{value}</td>"
+        "<td>#{value}</td>"
       end
-      result
     end
   end
 end
