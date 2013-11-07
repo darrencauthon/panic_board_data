@@ -6,6 +6,20 @@ describe PanicBoardData::Table do
     PanicBoardData::Table.new
   end
 
+  describe "initialize" do
+
+    it "should default data to an empty array" do
+      PanicBoardData::Table.new.data.count.must_equal 0
+    end
+
+    it "should allow a new table to be built with data" do
+      data = Object.new
+      table = PanicBoardData::Table.new data
+      table.data.must_be_same_as data
+    end
+
+  end
+
   describe "to_html" do
 
     describe "empty table" do

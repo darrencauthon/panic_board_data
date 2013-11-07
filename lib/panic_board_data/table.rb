@@ -6,6 +6,10 @@ module PanicBoardData
 
     attr_accessor :data, :widths, :base_image_url
 
+    def initialize(data = [])
+      @data = data
+    end
+
     def build_image value
       "<img src=\"#{url_for(value)}\" />"
     end
