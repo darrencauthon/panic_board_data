@@ -51,12 +51,22 @@ module PanicBoardData
     end
 
     def build_cell_for value, index
-      value = value.join('') if value.is_a?(Array)
-      if widths && widths[index]
-        "<td style=\"width: #{widths[index]}px\">#{value}</td>"
-      else
-        "<td>#{value}</td>"
-      end
+      value = flatten_a_value_array_to_a_single_value value
+      width = get_width_for index
+      render_cell value, width
+    end
+
+    def flatten_a_value_array_to_a_single_value value
+      value.is_a?(Array) ? value.join('') : value
+    end
+
+    def get_width_for index
+      widths ? widths[index] : nil
+    end
+
+    def render_cell value, width
+      width ? "<td style=\"width: #{width}px\">#{value}</td>"
+            : "<td>#{value}</td>"
     end
   end
 end
