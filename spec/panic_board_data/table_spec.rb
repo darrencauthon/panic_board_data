@@ -39,6 +39,27 @@ describe PanicBoardData::Table do
       end
     end
 
+    [:array, :first_width, :second_width, :result].to_objects { [
+      [ [0],    125, nil, "<td style=\"width: 125px\">0</td>"],
+      [ [1],    200, nil, "<td style=\"width: 200px\">1</td>"],
+      [ [1, 2], 102, nil, "<td style=\"width: 102px\">1</td><td>2</td>"],
+      [ [1, 2], 401, 500, "<td style=\"width: 401px\">1</td><td style=\"width: 500px\">2</td>"],
+    ] }.each do |test|
+
+      describe "one row, adjusted width" do
+
+        before do
+          table.data   = [test.array]
+          table.widths = [test.first_width, test.second_width]
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
+    end
+
   end
 
   describe "to_csv" do

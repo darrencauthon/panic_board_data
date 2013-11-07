@@ -3,7 +3,7 @@ require 'csv'
 module PanicBoardData
   class Table
 
-    attr_accessor :data
+    attr_accessor :data, :widths
 
     def to_html
       result = "<table>"
@@ -11,8 +11,12 @@ module PanicBoardData
       if data
         data.each do |record|
           result << "<tr>"
-          record.each do |item|
-            result << "<td>#{item}</td>"
+          record.each_with_index do |item, index|
+            if widths && widths[index]
+              result << "<td style=\"width: #{widths[index]}px\">#{item}</td>"
+            else
+              result << "<td>#{item}</td>"
+            end
           end
           result << "</tr>"
         end
