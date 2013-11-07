@@ -1,3 +1,4 @@
+# http://www.panic.com/statusboard/docs/table_tutorial.pdf
 require 'csv'
 
 module PanicBoardData
