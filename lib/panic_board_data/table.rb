@@ -15,11 +15,12 @@ module PanicBoardData
       if data
         data.each do |record|
           result << "<tr>"
-          record.each_with_index do |item, index|
+          record.each_with_index do |value, index|
+            value = value.join('') if value.is_a?(Array)
             if widths && widths[index]
-              result << "<td style=\"width: #{widths[index]}px\">#{item}</td>"
+              result << "<td style=\"width: #{widths[index]}px\">#{value}</td>"
             else
-              result << "<td>#{item}</td>"
+              result << "<td>#{value}</td>"
             end
           end
           result << "</tr>"

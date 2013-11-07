@@ -79,6 +79,23 @@ describe PanicBoardData::Table do
       end
     end
 
+    [:first_image, :second_image, :result].to_objects { [
+      [ 0, 1, "<td><img src=\"0\" /><img src=\"1\" /></td>"],
+    ] }.each do |test|
+
+      describe "stacking multiple images into a single cell" do
+
+        before do
+          table.data = [[[table.build_image(test.first_image), table.build_image(test.second_image)]]]
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
+    end
+
   end
 
   describe "to_csv" do
