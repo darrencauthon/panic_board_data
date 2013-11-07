@@ -3,8 +3,22 @@ require 'csv'
 module PanicBoardData
   class Table
 
+    attr_accessor :data
+
     def to_html
-      "<table></table>"
+      result = "<table>"
+
+      if data
+        data.each do |record|
+          result << "<tr>"
+          record.each do |item|
+            result << "<td>#{item}</td>"
+          end
+          result << "</tr>"
+        end
+      end
+
+      result << "</table>"
     end
 
     def self.to_csv data

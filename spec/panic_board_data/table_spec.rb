@@ -1,17 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PanicBoardData::Table do
-  it "should exist" do
-    PanicBoardData::Table.nil?.must_equal false
+
+  let(:table) do
+    PanicBoardData::Table.new
   end
 
   describe "to_html" do
 
     describe "empty table" do
-
-      let(:table) do
-        PanicBoardData::Table.new
-      end
 
       before do
         @result = table.to_html
@@ -21,6 +18,25 @@ describe PanicBoardData::Table do
         @result.must_equal "<table></table>"
       end
 
+    end
+
+    [:array, :result].to_objects { [
+      [ [0],    "<td>0</td>"],
+      [ [1],    "<td>1</td>"],
+      [ [1, 2], "<td>1</td><td>2</td>"],
+    ] }.each do |test|
+
+      describe "one row" do
+
+        before do
+          table.data = [test.array]
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
     end
 
   end
