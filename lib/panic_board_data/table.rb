@@ -5,6 +5,10 @@ module PanicBoardData
 
     attr_accessor :data, :widths
 
+    def build_image value
+      "<img src=\"#{value}\" />"
+    end
+
     def to_html
       result = "<table>"
 

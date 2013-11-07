@@ -60,6 +60,25 @@ describe PanicBoardData::Table do
       end
     end
 
+    [:array, :result].to_objects { [
+      [ [0],           "<td><img src=\"0\" /></td>"],
+      [ [1],           "<td><img src=\"1\" /></td>"],
+      [ ['apple.jpg'], "<td><img src=\"apple.jpg\" /></td>"],
+    ] }.each do |test|
+
+      describe "one row" do
+
+        before do
+          table.data = [test.array.map { |x| table.build_image x }]
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
+    end
+
   end
 
   describe "to_csv" do
