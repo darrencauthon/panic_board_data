@@ -39,11 +39,10 @@ module PanicBoardData
     private
 
     def build_row_for record
-      result = "<tr>"
-      record.each_with_index do |value, index|
-        result << build_cell_for(value, index)
-      end
-      result << "</tr>"
+      result = record.each_with_index.map do |value, index|
+                 build_cell_for value, index
+               end.join
+      "<tr>#{result}</tr>"
     end
 
     def build_cell_for value, index
