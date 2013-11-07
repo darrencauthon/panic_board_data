@@ -7,16 +7,20 @@ describe PanicBoardData::Table do
 
   describe "to_html" do
 
-    let(:table) do
-      PanicBoardData::Table.new
-    end
+    describe "empty table" do
 
-    before do
-      @result = table.to_html
-    end
+      let(:table) do
+        PanicBoardData::Table.new
+      end
 
-    it "should return a result" do
-      @result.must_equal "<table></table>"
+      before do
+        @result = table.to_html
+      end
+
+      it "should return a result" do
+        @result.must_equal "<table></table>"
+      end
+
     end
 
   end
