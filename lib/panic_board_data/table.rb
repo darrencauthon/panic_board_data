@@ -11,15 +11,7 @@ module PanicBoardData
     end
 
     def to_html
-      result = "<table>"
-
-      if data
-        data.each do |record|
-          result += build_row_for(record)
-        end
-      end
-
-      result << "</table>"
+      "<table>#{data_to_rows}</table>"
     end
 
     def self.to_csv data
@@ -38,6 +30,11 @@ module PanicBoardData
         .join('/')
         .gsub('http:', 'http://')
         .gsub('https:', 'https://')
+    end
+
+    def data_to_rows
+      return '' unless data
+      data.map { |r| build_row_for r }.join
     end
 
     def build_row_for record
