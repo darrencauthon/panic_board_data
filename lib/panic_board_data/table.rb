@@ -4,7 +4,7 @@ module PanicBoardData
   class Table
 
     def to_html
-      Object
+      "<table></table>"
     end
 
     def self.to_csv data
