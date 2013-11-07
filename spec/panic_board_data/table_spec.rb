@@ -66,7 +66,7 @@ describe PanicBoardData::Table do
       [ ['apple.jpg'], "<td><img src=\"apple.jpg\" /></td>"],
     ] }.each do |test|
 
-      describe "one row" do
+      describe "basic image use" do
 
         before do
           table.data = [test.array.map { |x| table.build_image x }]
