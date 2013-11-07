@@ -3,10 +3,18 @@ require 'csv'
 module PanicBoardData
   class Table
 
-    attr_accessor :data, :widths
+    attr_accessor :data, :widths, :base_image_url
 
     def build_image value
-      "<img src=\"#{value}\" />"
+
+      url = [self.base_image_url, value]
+              .select { |x| x.to_s != '' }
+              .map    { |x| x.to_s.strip }
+              .map    { |x| x.gsub('/', '') }
+              .join('/')
+              .gsub('http:', 'http://')
+              .gsub('https:', 'https://')
+      "<img src=\"#{url}\" />"
     end
 
     def to_html

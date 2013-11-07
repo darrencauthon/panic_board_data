@@ -97,6 +97,29 @@ describe PanicBoardData::Table do
       end
     end
 
+    [:array, :base_image_url, :result].to_objects { [
+      [ [0],            "http://www.google.com",  "<td><img src=\"http://www.google.com/0\" /></td>"],
+      [ [1],            "http://www.bing.com/",   "<td><img src=\"http://www.bing.com/1\" /></td>"],
+      [ ['apple.jpg'],  nil,                      "<td><img src=\"apple.jpg\" /></td>"],
+      [ ['apple.jpg'],  '',                       "<td><img src=\"apple.jpg\" /></td>"],
+      [ ['/apple.jpg'], 'http://www.bing.com/',   "<td><img src=\"http://www.bing.com/apple.jpg\" /></td>"],
+      [ ['/apple.jpg'], 'https://www.bing.com/',  "<td><img src=\"https://www.bing.com/apple.jpg\" /></td>"],
+    ] }.each do |test|
+
+      describe "basic image use" do
+
+        before do
+          table.base_image_url = test.base_image_url
+          table.data           = [test.array.map { |x| table.build_image x }]
+
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
+    end
   end
 
   describe "to_csv" do
