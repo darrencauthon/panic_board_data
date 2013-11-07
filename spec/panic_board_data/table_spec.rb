@@ -81,6 +81,7 @@ describe PanicBoardData::Table do
 
     [:first_image, :second_image, :result].to_objects { [
       [ 0, 1, "<td><img src=\"0\" /><img src=\"1\" /></td>"],
+      [ 1, 2, "<td><img src=\"1\" /><img src=\"2\" /></td>"],
     ] }.each do |test|
 
       describe "stacking multiple images into a single cell" do
