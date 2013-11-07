@@ -15,7 +15,7 @@ module PanicBoardData
     end
 
     def to_html
-      "<table>#{data_to_rows}</table>"
+      "<table>#{data_to_table_rows}</table>"
     end
 
     def to_csv
@@ -40,7 +40,7 @@ module PanicBoardData
         .gsub('https:', 'https://')
     end
 
-    def data_to_rows
+    def data_to_table_rows
       return '' unless data
       data.map { |r| build_row_for r }.join
     end
