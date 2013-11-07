@@ -45,9 +45,7 @@ module PanicBoardData
     end
 
     def data_points_for data_sequence
-      data_sequence.data.map do |k, v|
-        { 'title' => k, 'value' => v }
-      end
+      data_sequence.data.map { |k, v| { 'title' => k, 'value' => v } }
     end
 
     def formatted_color
