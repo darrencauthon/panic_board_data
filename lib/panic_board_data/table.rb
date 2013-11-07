@@ -23,16 +23,7 @@ module PanicBoardData
 
       if data
         data.each do |record|
-          result << "<tr>"
-          record.each_with_index do |value, index|
-            value = value.join('') if value.is_a?(Array)
-            if widths && widths[index]
-              result << "<td style=\"width: #{widths[index]}px\">#{value}</td>"
-            else
-              result << "<td>#{value}</td>"
-            end
-          end
-          result << "</tr>"
+          result += build_row_for(record)
         end
       end
 
@@ -43,6 +34,27 @@ module PanicBoardData
       ::CSV.generate do |csv|
         data.each { |row| csv << row }
       end.strip
+    end
+
+    private
+
+    def build_row_for record
+      result = "<tr>"
+      record.each_with_index do |value, index|
+        result << build_cell_for(value, index)
+      end
+      result << "</tr>"
+    end
+
+    def build_cell_for value, index
+      result = ""
+      value = value.join('') if value.is_a?(Array)
+      if widths && widths[index]
+        result << "<td style=\"width: #{widths[index]}px\">#{value}</td>"
+      else
+        result << "<td>#{value}</td>"
+      end
+      result
     end
   end
 end
