@@ -76,5 +76,7 @@ module PanicBoardData
       width ? "<td style=\"width: #{width}px\">#{value}</td>"
             : "<td>#{value}</td>"
     end
+
   end
+
 end
