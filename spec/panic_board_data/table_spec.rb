@@ -145,6 +145,28 @@ describe PanicBoardData::Table do
 
     end
 
+    [:value, :result].to_objects {[
+      [1, '<div class="barSegment value1"></div>'],
+      [2, '<div class="barSegment value1"></div><div class="barSegment value2"></div>'],
+      [8, '<div class="barSegment value1"></div><div class="barSegment value2"></div><div class="barSegment value3"></div><div class="barSegment value4"></div><div class="barSegment value5"></div><div class="barSegment value6"></div><div class="barSegment value7"></div><div class="barSegment value8"></div>']
+    ]}.each do |test|
+
+      describe "progress bars" do
+
+        before do
+          table.data = [['a', table.progress_bar_to(test.value)]]
+
+          @result = table.to_html
+        end
+
+        it "should create a cell with the proper progress bar" do
+          @result.must_equal "<table><tr><td>a</td><td>#{test.result}</td></tr></table>"
+        end
+
+      end
+
+    end
+
   end
 
   [->(d) { PanicBoardData::Table.to_csv(d) },

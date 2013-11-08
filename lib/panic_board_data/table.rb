@@ -14,6 +14,11 @@ module PanicBoardData
       "<img src=\"#{url_for(value)}\" />"
     end
 
+    def progress_bar_to int
+      (1..int).to_a
+              .map { |x| "<div class=\"barSegment value#{x}\"></div>" }.join
+    end
+
     def to_html
       "<table>#{data_to_table_rows}</table>"
     end
