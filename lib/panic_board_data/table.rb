@@ -2,6 +2,19 @@
 require 'csv'
 
 module PanicBoardData
+
+  class ProgressBar
+    attr_accessor :value
+
+    def to_s
+      ['<td class="projectsBars">',
+       (1..self.value).to_a
+               .map { |x| "<div class=\"barSegment value#{x}\"></div>" }
+               .join,
+       '</td>'].join
+    end
+  end
+
   class Table
 
     attr_accessor :data, :widths, :base_image_url
@@ -15,9 +28,9 @@ module PanicBoardData
     end
 
     def progress_bar_to int
-      (1..int).to_a
-              .map { |x| "<div class=\"barSegment value#{x}\"></div>" }
-              .join
+      progress_bar = ProgressBar.new
+      progress_bar.value = int
+      progress_bar
     end
 
     def to_html
@@ -71,6 +84,7 @@ module PanicBoardData
     end
 
     def render_cell value, width
+      return value.to_s if value.is_a? PanicBoardData::ProgressBar
       width ? "<td style=\"width: #{width}px\">#{value}</td>"
             : "<td>#{value}</td>"
     end

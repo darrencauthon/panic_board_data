@@ -146,9 +146,9 @@ describe PanicBoardData::Table do
     end
 
     [:value, :result].to_objects {[
-      [1, '<div class="barSegment value1"></div>'],
-      [2, '<div class="barSegment value1"></div><div class="barSegment value2"></div>'],
-      [8, '<div class="barSegment value1"></div><div class="barSegment value2"></div><div class="barSegment value3"></div><div class="barSegment value4"></div><div class="barSegment value5"></div><div class="barSegment value6"></div><div class="barSegment value7"></div><div class="barSegment value8"></div>']
+      [1, '<td class="projectsBars"><div class="barSegment value1"></div></td>'],
+      [2, '<td class="projectsBars"><div class="barSegment value1"></div><div class="barSegment value2"></div></td>'],
+      [8, '<td class="projectsBars"><div class="barSegment value1"></div><div class="barSegment value2"></div><div class="barSegment value3"></div><div class="barSegment value4"></div><div class="barSegment value5"></div><div class="barSegment value6"></div><div class="barSegment value7"></div><div class="barSegment value8"></div></td>']
     ]}.each do |test|
 
       describe "progress bars" do
@@ -160,7 +160,7 @@ describe PanicBoardData::Table do
         end
 
         it "should create a cell with the proper progress bar" do
-          @result.must_equal "<table><tr><td>a</td><td>#{test.result}</td></tr></table>"
+          @result.must_equal "<table><tr><td>a</td>#{test.result}</tr></table>"
         end
 
       end
