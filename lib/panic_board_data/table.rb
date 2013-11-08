@@ -16,7 +16,8 @@ module PanicBoardData
 
     def progress_bar_to int
       (1..int).to_a
-              .map { |x| "<div class=\"barSegment value#{x}\"></div>" }.join
+              .map { |x| "<div class=\"barSegment value#{x}\"></div>" }
+              .join
     end
 
     def to_html
