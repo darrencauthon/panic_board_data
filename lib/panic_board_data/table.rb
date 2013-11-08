@@ -3,18 +3,6 @@ require 'csv'
 
 module PanicBoardData
 
-  class ProgressBar
-    attr_accessor :value
-
-    def to_s
-      ['<td class="projectsBars">',
-       (1..self.value).to_a
-               .map { |x| "<div class=\"barSegment value#{x}\"></div>" }
-               .join,
-       '</td>'].join
-    end
-  end
-
   class Table
 
     attr_accessor :data, :widths, :base_image_url
