@@ -15,12 +15,6 @@ module PanicBoardData
       "<img src=\"#{url_for(value)}\" />"
     end
 
-    def progress_bar_to int
-      progress_bar = ProgressBar.new
-      progress_bar.value = int
-      progress_bar
-    end
-
     def to_html
       "<table>#{data_to_table_rows}</table>"
     end
