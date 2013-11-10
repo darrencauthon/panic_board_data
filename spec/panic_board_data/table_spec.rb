@@ -55,6 +55,23 @@ describe PanicBoardData::Table do
 
     end
 
+    [:array, :result].to_objects { [
+      [ ["<td>X</td>"],          "<td>X</td>"],
+      [ ["<td width=''>Y</td>"], "<td width=''>Y</td>"],
+    ] }.each do |test|
+
+      describe "a cell value that starts with a TD" do
+        before do
+          table.data = [test.array]
+          @result = table.to_html
+        end
+
+        it "should return a result" do
+          @result.must_equal "<table><tr>#{test.result}</tr></table>"
+        end
+      end
+    end
+
     [:array, :first_width, :second_width, :result].to_objects { [
       [ [0],    125, nil, "<td style=\"width: 125px\">0</td>"],
       [ [1],    200, nil, "<td style=\"width: 200px\">1</td>"],

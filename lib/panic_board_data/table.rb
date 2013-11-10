@@ -38,7 +38,7 @@ module PanicBoardData
     end
 
     def build_cell_for value, index
-      value = flatten_a_value_array_to_a_single_value value
+      value = flatten_a_value_array_to_a_single_value(value).to_s
       width = get_width_for index
       render_cell value, width
     end
@@ -52,7 +52,7 @@ module PanicBoardData
     end
 
     def render_cell value, width
-      return value.to_s if value.is_a? PanicBoardData::ProgressBar
+      return value if value[0..2] == '<td'
       width ? "<td style=\"width: #{width}px\">#{value}</td>"
             : "<td>#{value}</td>"
     end
