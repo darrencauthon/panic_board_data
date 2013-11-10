@@ -11,10 +11,6 @@ module PanicBoardData
       @data = data
     end
 
-    def build_image value
-      "<img src=\"#{url_for(value)}\" />"
-    end
-
     def to_html
       "<table>#{data_to_table_rows}</table>"
     end
@@ -30,16 +26,6 @@ module PanicBoardData
     end
 
     private
-
-    def url_for value
-      [value]
-        .select { |x| x.to_s != '' }
-        .map    { |x| x.to_s.strip }
-        .map    { |x| x.gsub('/', '') }
-        .join('/')
-        .gsub('http:', 'http://')
-        .gsub('https:', 'https://')
-    end
 
     def data_to_table_rows
       return '' unless data
