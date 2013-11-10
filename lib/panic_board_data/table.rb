@@ -5,7 +5,7 @@ module PanicBoardData
 
   class Table
 
-    attr_accessor :data, :widths, :base_image_url
+    attr_accessor :data, :widths
 
     def initialize(data = [])
       @data = data
@@ -32,7 +32,7 @@ module PanicBoardData
     private
 
     def url_for value
-      [self.base_image_url, value]
+      [value]
         .select { |x| x.to_s != '' }
         .map    { |x| x.to_s.strip }
         .map    { |x| x.gsub('/', '') }

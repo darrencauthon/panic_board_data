@@ -87,7 +87,7 @@ describe PanicBoardData::Table do
       describe "basic image use" do
 
         before do
-          table.data = [test.array.map { |x| table.build_image x }]
+          table.data = [test.array.map { |x| build_image x }]
           @result = table.to_html
         end
 
@@ -107,60 +107,12 @@ describe PanicBoardData::Table do
       describe "stacking multiple images into a single cell" do
 
         before do
-          table.data = [[[table.build_image(test.first_image), table.build_image(test.second_image)]]]
+          table.data = [[[build_image(test.first_image), build_image(test.second_image)]]]
           @result = table.to_html
         end
 
         it "should return a result" do
           @result.must_equal "<table><tr>#{test.result}</tr></table>"
-        end
-
-      end
-
-    end
-
-    [:array, :base_image_url, :result].to_objects { [
-      [ [0],            "http://www.google.com",  "<td><img src=\"http://www.google.com/0\" /></td>"],
-      [ [1],            "http://www.bing.com/",   "<td><img src=\"http://www.bing.com/1\" /></td>"],
-      [ ['apple.jpg'],  nil,                      "<td><img src=\"apple.jpg\" /></td>"],
-      [ ['apple.jpg'],  '',                       "<td><img src=\"apple.jpg\" /></td>"],
-      [ ['/apple.jpg'], 'http://www.bing.com/',   "<td><img src=\"http://www.bing.com/apple.jpg\" /></td>"],
-      [ ['/apple.jpg'], 'https://www.bing.com/',  "<td><img src=\"https://www.bing.com/apple.jpg\" /></td>"],
-    ] }.each do |test|
-
-      describe "basic image use" do
-
-        before do
-          table.base_image_url = test.base_image_url
-          table.data           = [test.array.map { |x| table.build_image x }]
-
-          @result = table.to_html
-        end
-
-        it "should return a result" do
-          @result.must_equal "<table><tr>#{test.result}</tr></table>"
-        end
-
-      end
-
-    end
-
-    [:value, :result].to_objects {[
-      [1, '<td class="projectsBars"><div class="barSegment value1"></div></td>'],
-      [2, '<td class="projectsBars"><div class="barSegment value1"></div><div class="barSegment value2"></div></td>'],
-      [8, '<td class="projectsBars"><div class="barSegment value1"></div><div class="barSegment value2"></div><div class="barSegment value3"></div><div class="barSegment value4"></div><div class="barSegment value5"></div><div class="barSegment value6"></div><div class="barSegment value7"></div><div class="barSegment value8"></div></td>']
-    ]}.each do |test|
-
-      describe "progress bars" do
-
-        before do
-          table.data = [['a', table.progress_bar_to(test.value)]]
-
-          @result = table.to_html
-        end
-
-        it "should create a cell with the proper progress bar" do
-          @result.must_equal "<table><tr><td>a</td>#{test.result}</tr></table>"
         end
 
       end
