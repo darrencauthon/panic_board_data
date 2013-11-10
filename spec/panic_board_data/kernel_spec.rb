@@ -19,4 +19,23 @@ describe "progress_bar_to" do
 
   end
 
+  [:value, :result].to_objects { [
+    [ 0,           "<img src=\"0\" />"],
+    [ 1,           "<img src=\"1\" />"],
+    [ 'apple.jpg', "<img src=\"apple.jpg\" />"],
+  ] }.each do |test|
+
+    describe "basic image use" do
+
+      before do
+        @result = build_image test.value
+      end
+
+      it "should return a result" do
+        @result.must_equal test.result
+      end
+
+    end
+
+  end
 end
