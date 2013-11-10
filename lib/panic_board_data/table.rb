@@ -52,9 +52,13 @@ module PanicBoardData
     end
 
     def render_cell value, width
-      return value if value[0..2] == '<td'
+      return value if this_value_defines_a_td value
       width ? "<td style=\"width: #{width}px\">#{value}</td>"
             : "<td>#{value}</td>"
+    end
+
+    def this_value_defines_a_td value
+      value[0..2] == '<td'
     end
 
   end
