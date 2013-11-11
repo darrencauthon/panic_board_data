@@ -26,16 +26,26 @@ Or install it yourself as:
   # Sinatra example
   get '/my_table' do
 
+    # sample images for our board
     images = [build_image('http://tinyurl.com/mnvjm96'),
               build_image('http://tinyurl.com/kt3hp7v')]
 
-    table = PanicBoardData::Table.new
-    table.data = [['Project A', "5 days", images,    progress_bar_to(3)], 
-                  ['Project B', "2 days", images[0], progress_bar_to(7)],
-                  ['Project C', "9 days", images[1], progress_bar_to(1)],
-                  ['Project D', "1 day",  nil, progress_bar_to(8)]]
+    # special note: An array of values (like "images") will
+    # be flattened into a single value in the cell...
+    # so no need to concatenate things like rows of images.
+    data = [['Project A', "5 days", images,    progress_bar_to(3)], 
+            ['Project B', "2 days", images[0], progress_bar_to(7)],
+            ['Project C', "9 days", images[1], progress_bar_to(1)],
+            ['Project D', "1 day",  nil,       progress_bar_to(8)]]
+
+    table = PanicBoardData::Table.new data
+
+    # optionally set the column widths
     table.widths = [nil, 125, 100]
+
+    # return HTML necessary for import into Status Board
     table.to_html
+  
   end
 ````
 
