@@ -94,6 +94,34 @@ Or install it yourself as:
   end
 ````
 
+#### Single Values
+
+These can be really big...
+
+![SingleValue](https://raw.github.com/darrencauthon/panic_board_data/master/samples/single_value_1.jpg "Single Value")
+
+````ruby
+  # yet another Sinatra example
+  get '/single_value' do
+    heading = 'How many people live in the United States?'
+    value = PanicBoardData::SingleValue.new heading, '317,044,240'
+
+    # return HTML necessary for import into Status Board
+    value.to_html
+  end
+````
+
+... or very small.
+
+![SingleValue](https://raw.github.com/darrencauthon/panic_board_data/master/samples/single_value_2.jpg "Single Value")
+
+````ruby
+  # yet another Sinatra example
+  get '/single_value' do
+    PanicBoardData::SingleValue.new('Logins Today', 1).to_html
+  end
+````
+
 
 ## Contributing
 
