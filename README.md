@@ -20,7 +20,7 @@ Or install it yourself as:
 
 #### Tables
 
-tables.jpg
+![Table](https://raw.github.com/darrencauthon/panic_board_data/master/samples/tables.jpg "Table")
 
 ````ruby
   # Sinatra example
