@@ -49,6 +49,52 @@ Or install it yourself as:
   end
 ````
 
+#### Graphs
+
+![Graph](https://raw.github.com/darrencauthon/panic_board_data/master/samples/graphs.jpg "Graph")
+
+````ruby
+  #another Sinatra example
+  get '/graph_example' do
+
+    # one set of data
+    hotdogs = PanicBoardData::DataSequence.new('Hotdogs')
+    hotdogs.data['Sunday']    = 4
+    hotdogs.data['Monday']    = 3
+    hotdogs.data['Tuesday']   = 4
+    hotdogs.data['Wednesday'] = 8
+    hotdogs.data['Thursday']  = 10
+    hotdogs.data['Friday']    = 11
+    hotdogs.data['Saturday']  = 2
+
+    # another set of data
+    burgers = PanicBoardData::DataSequence.new('Burgers')
+    burgers.data['Sunday']    = 1
+    burgers.data['Monday']    = 7
+    burgers.data['Tuesday']   = 5
+    burgers.data['Wednesday'] = 6
+    burgers.data['Thursday']  = 10
+    burgers.data['Friday']    = 15
+    burgers.data['Saturday']  = 5
+
+    # build the graph
+    graph = PanicBoardData::Graph.new
+    graph.title = "Purchases"
+
+    # this can be :bar or :line
+    graph.type = :bar
+
+    # add the sets of data you want to display in the graph
+    graph.data_sequences << hotdogs
+    graph.data_sequences << burgers
+
+    # return JSON necessary for import into Status Board
+    graph.to_json
+
+  end
+````
+
+
 ## Contributing
 
 1. Fork it
