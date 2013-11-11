@@ -19,6 +19,10 @@ module PanicBoardData
       }
     end
 
+    def to_json
+      to_hash.to_json
+    end
+
     private
 
     def graph

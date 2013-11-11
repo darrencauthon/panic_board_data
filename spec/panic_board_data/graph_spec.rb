@@ -196,4 +196,19 @@ describe PanicBoardData::Graph do
       end
     end
   end
+
+  describe "to_json" do
+    it "should call to_json on the to_hash result" do
+      graph = PanicBoardData::Graph.new
+
+      result = Object.new
+
+      hash = Object.new
+      graph.stubs(:to_hash).returns hash
+
+      hash.stubs(:to_json).returns result
+
+      graph.to_json.must_be_same_as result
+    end
+  end
 end
