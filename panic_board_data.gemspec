@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = PanicBoardData::VERSION
   spec.authors       = ["Darren Cauthon"]
   spec.email         = ["darren@cauthon.com"]
-  spec.description   = %q{Export data for Panic Board}
-  spec.summary       = %q{Export data for Panic Board}
-  spec.homepage      = ""
+  spec.description   = %q{Export data for Panic Status Board}
+  spec.summary       = %q{Export data for Panic Status Board}
+  spec.homepage      = "http://www.github.com/darrencauthon/panic_board_data"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
