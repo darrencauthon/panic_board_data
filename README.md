@@ -1,6 +1,6 @@
 # PanicBoardData
 
-TODO: Write a gem description
+This gem exists to make it eaiser to display data on your Panic Status Board.
 
 ## Installation
 
@@ -18,7 +18,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Tables
+
+tables.jpg
+
+````ruby
+  # Sinatra example
+  get '/my_table' do
+
+    images = [build_image('http://tinyurl.com/mnvjm96'),
+              build_image('http://tinyurl.com/kt3hp7v')]
+
+    table = PanicBoardData::Table.new
+    table.data = [['Project A', "5 days", images,    progress_bar_to(3)], 
+                  ['Project B', "2 days", images[0], progress_bar_to(7)],
+                  ['Project C', "9 days", images[1], progress_bar_to(1)],
+                  ['Project D', "1 day",  nil, progress_bar_to(8)]]
+    table.widths = [nil, 125, 100]
+    table.to_html
+  end
+````
 
 ## Contributing
 
