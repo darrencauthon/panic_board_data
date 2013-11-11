@@ -2,21 +2,13 @@
 
 This gem exists to make it eaiser to display data on your Panic Status Board.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'panic_board_data'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install panic_board_data
-
 ## Usage
+
+The Panic Status Board loads itself with data it pulls from the internet.
+
+Therefore, if you want to show very custom data in your Status Board, you'll want to create a website that serves that custom data. 
+
+With this gem, the easiest way to do this is to create a simple Sinatra application.  Create a simple site that returns the output from this gem, and your custom Status Board will be good-to-go.
 
 #### Tables
 
@@ -121,12 +113,3 @@ These can be really big...
     PanicBoardData::SingleValue.new('Logins Today', 1).to_html
   end
 ````
-
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
